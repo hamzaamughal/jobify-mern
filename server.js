@@ -18,7 +18,10 @@ import errorHandlerMiddleware from './middleware/error-handler.js';
 const app = express();
 
 app.use(express.json());
-
+console.log('hello');
+console.log('hello');
+console.log('hello');
+console.log('hello');
 app.get('/', (req, res) => {
   res.send('Hello World!');
 });
