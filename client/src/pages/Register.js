@@ -53,16 +53,15 @@ export default function Register() {
       setupUser({
         currentUser,
         endPoint: 'register',
-        alertText: 'Registration Successful! Redirecting...',
+        alertText: 'User Created! Redirecting...',
       });
     }
-    console.log(values);
   };
 
   useEffect(() => {
     if (user) {
       setTimeout(() => {
-        navigate('/hello');
+        navigate('/');
       }, 3000);
     }
   }, [user, navigate]);
