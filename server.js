@@ -2,6 +2,7 @@ import express from 'express';
 import 'express-async-errors';
 import dotenv from 'dotenv';
 dotenv.config();
+import morgan from 'morgan';
 
 //db and authenticateUser
 // MONGO_URI=mongodb+srv://jobify:jobify@jobify.eur9z.mongodb.net/Jobify?retryWrites=true&w=majority
@@ -17,11 +18,12 @@ import errorHandlerMiddleware from './middleware/error-handler.js';
 
 const app = express();
 
+if (process.env.NODE_ENV !== 'production') {
+  app.use(morgan('dev'));
+}
+
 app.use(express.json());
-console.log('hello');
-console.log('hello');
-console.log('hello');
-console.log('hello');
+
 app.get('/', (req, res) => {
   res.send('Hello World!');
 });
