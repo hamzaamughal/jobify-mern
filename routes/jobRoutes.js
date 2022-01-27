@@ -1,4 +1,6 @@
 import express from 'express';
+const router = express.Router();
+
 import {
   createJob,
   deleteJob,
@@ -6,8 +8,6 @@ import {
   showStats,
   updateJob,
 } from '../controllers/jobsController.js';
-
-const router = express.Router();
 
 router.route('/').post(createJob).get(getAllJobs);
 router.route('/stats').get(showStats);
