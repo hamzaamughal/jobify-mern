@@ -50,8 +50,19 @@ const updateJob = async (req, res) => {
   res.status(StatusCodes.OK).json({ updatedJob });
 };
 
-const deleteJob = (req, res) => {
-  res.send('delete job');
+const deleteJob = async (req, res) => {
+  const { id: jobId } = req.params;
+
+  const job = await Job.findOne({ _id: jobId });
+
+  if (!job) {
+    throw new CustomError.NotFoundError(`No job with id : ${jobId}`);
+  }
+
+  checkPermissions(req.user, job.createdBy);
+
+  await job.remove();
+  res.status(StatusCodes.OK).json({ msg: 'Success! Job removed' });
 };
 
 const showStats = (req, res) => {
